@@ -9,9 +9,9 @@ for (let i=1; i<cantidad+1 && i<5+1; i++){
         console.log("El precio individual de la pizza "+tamañoPizza+" es de "+ precio)
     }
     
-    let gustoPizza= prompt("Ingrese que gusto quiere para la pizza " + i +" (Solo disponible hasta 5 pizzas o las que se pidan ). Los gustos disponibles son napolitana, muzzarella, fugazzeta, cuatro quesos y calabresa.")
+    let gustoPizza= GustoPizza(i)
     
-    pizzas.push({nropizza:i, gusto:gustoPizza, tamaño:tamañoPizza, precio: precio })
+    pizzas.push({nropizza:i, gusto:gustoPizza.toLowerCase(), tamaño:tamañoPizza, precio: precio })
     sumaprecios+=precio
     if (cantidad==i){
         Imprimir(cantidad,sumaprecios,pizzas)
@@ -30,7 +30,7 @@ function Cantidadpizzas(){
 }
 
 function TipoPizza(i){
-    let tipoP=prompt('Para la piiza ' + i+ ': Ingrese "1" si quiere pizza chica o "2" si quiere pizza grande')
+    let tipoP=prompt('Para la pizza ' + i+ ': Ingrese "1" si quiere pizza chica o "2" si quiere pizza grande')
 
     while ((tipoP != 1 ) && (tipoP != 2)){
         tipoP=prompt('No es valido, Ingrese "1" si quiere pizza chica o "2" si quiere pizza grande ')
@@ -55,7 +55,13 @@ function Precio(tamP){
     }
     return precio
 }
-
+function GustoPizza(i){
+    let gustoPizza= prompt("Ingrese que gusto quiere para la pizza " + i +" (Solo disponible hasta 5 pizzas o las que se pidan ). Los gustos disponibles son napolitana, muzzarella, fugazzeta, cuatro quesos y calabresa.")
+    while(gustoPizza.toLowerCase()!="napolitana" && gustoPizza.toLowerCase()!="muzzarella" && gustoPizza.toLowerCase()!="fugazzeta" && gustoPizza.toLowerCase()!="cuatro quesos" && gustoPizza.toLowerCase()!="calabresa"){
+        gustoPizza= prompt("El gusto ingresado es incorrecto. Por favor vuelva a ingresar que gusto quiere para la pizza " + i +" (Solo disponible hasta 5 pizzas o las que se pidan ). Los gustos disponibles son napolitana, muzzarella, fugazzeta, cuatro quesos y calabresa.")
+    }
+    return gustoPizza
+}
 function Imprimir(can,tot,pizzas){
     pizzas.forEach((pizza)=>{console.log("Para la pizza "+ pizza.nropizza+" usted va a ordenar una "+pizza.gusto+" "+ pizza.tamaño+ " y vale "+pizza.precio)})
     
