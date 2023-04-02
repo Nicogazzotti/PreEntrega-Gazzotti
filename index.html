@@ -5,9 +5,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="js/arrayspizzas.js"></script>
+    <script src="js/template.js"></script>
+    <script defer src="js/dom.js"></script>
+    
 </head>
-<body>
-    <h1>Simulacion de pedido de pizzas</h1>
-    <script src="js/archivo.js"></script>
+<body class="body">
+    <header>
+        <div class="todo_header">
+
+            <div class="logo">
+                <a href=""><h1>SimuladorPizzas</h1></a>
+            </div>
+            <div class="barra">
+                <input type="text" placeholder="Buscar pizza..." >
+            </div>
+        </div>
+
+    </header>
+    
+    <div class="cont_todoindex">
+        <div class="cont_arriba" >
+            <h2 id="titulo_contarriba"></h2>
+            <div class="cont_pGrande" id="cont_pizzasGrandes">
+
+            </div>
+            
+        </div>
+        
+        <div class="cont_abajo" id="cont_abajo">
+            <h2 id="titulo_contabajo"></h2>
+            <div class="cont_pChica" id="cont_pizzasChicas">
+
+            </div>
+        </div>
+    </div>
+    
 </body>
 </html>
