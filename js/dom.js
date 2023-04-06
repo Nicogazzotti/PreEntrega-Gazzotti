@@ -13,6 +13,8 @@ btnCarrito.addEventListener("click",()=>location.href= "paginas/checkout.html")
 
 
 const cargarPizzas= (arrayP)=>{
+    contArriba.innerHTML=""
+    contAbajo.innerHTML=""
     if(arrayP.length>0){
         arrayP.forEach((pizza) => {
             const cont=document.createElement("div")
@@ -49,8 +51,19 @@ const cargarPizzas= (arrayP)=>{
 }
 
 const evtClickBt=(pizzaId)=>{
-    const res=arPizzas.find((pizza)=> pizza.id===pizzaId)
-    carrito.push(res)
+    const repite=carrito.some((pizza)=>pizza.id===pizzaId)
+    if(repite){
+        const ress=carrito.find((pizza)=>pizza.id===pizzaId)
+        ress.cantidad+=1
+    }
+    else{
+        const res=arPizzas.find((pizza)=> pizza.id===pizzaId)
+        carrito.push(res)
+        console.log(carrito)
+        
+
+    }
+
     storageCarrito()
 }
 

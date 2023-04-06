@@ -71,7 +71,15 @@ header{
     margin-right:30px;
 }
 .carrito:hover{
-    text-decoration: none;
+    color:rgba(66, 65, 65, 0.87);
+    cursor: pointer;
+}
+.imagen_carrito{
+    border-top-left-radius: 50% 50%;
+    order-top-right-radius: 50% 50%;
+    border-bottom-right-radius: 50% 50%;
+    border-bottom-left-radius: 50% 50%; 
+    width:60px ;
 }
 /* Body  */
 .body{
@@ -195,6 +203,12 @@ header{
     margin-top: 100px;
     
 }
+table tbody tr:nth-child(odd) {
+	background: #ffffff;
+}
+table tbody tr:nth-child(even) {
+	background: #cccccb;
+}
 table{
     width:100%;
     text-align: left;
@@ -213,6 +227,20 @@ tbody{
 tr{
     height:50px;
     border-bottom:solid 2px lightgrey;
+}
+.button_carrito{
+    margin-left: 13px;
+    padding: 1px 12px;
+    background: rgb(169, 212, 252);
+
+}
+.button_carrito:hover{
+    cursor:pointer;
+    opacity: 0.9;
+
+}
+.cant_check p{
+    margin-left:25px;
 }
 .titulo_carrito{
     margin-bottom: 30px;
@@ -236,6 +264,21 @@ tr{
 }
 .texto_checkout h2 a{
     color:dodgerblue;
+}
+.button_vaciar button{
+    margin-top: 10px;
+    padding: 8px 40px;
+    font-size: 15px;
+    font-weight:600;
+    color:white;
+    background: rgb(0, 132, 255);
+    border:none;
+    cursor:pointer;
+    border-radius:5px;
+}
+.producto button:hover{
+    opacity:0.9;
+
 }
 
 
