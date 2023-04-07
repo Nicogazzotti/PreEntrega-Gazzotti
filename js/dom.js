@@ -5,6 +5,7 @@ const tituloAbajo=document.getElementById("titulo_contabajo");
 const contArriba=document.getElementById("cont_pizzasGrandes");
 const contAbajo=document.getElementById("cont_pizzasChicas");
 const btnCarrito=document.querySelector("div.carrito");
+const agregarPizza=document.getElementById("agregar_pizza")
 console.log(btnCarrito)
 tituloArriba.innerHTML="Pizzas Grandes"
 tituloAbajo.innerHTML="Pizzas Chicas"
@@ -20,7 +21,7 @@ const cargarPizzas= (arrayP)=>{
             const cont=document.createElement("div")
             cont.innerHTML= `<div class="producto">
                                 <div class="img">
-                                    <img src="${pizza.imagen}" alt="">
+                                    <img src="${pizza.imagen}" alt="sin imagen">
                                 </div>
                                 <h3>${pizza.gusto}</h3>
                                 <ul class="cont_cat">
@@ -48,6 +49,7 @@ const cargarPizzas= (arrayP)=>{
         tituloAbajo.innerHTML="Error"
     }
     
+    
 }
 
 const evtClickBt=(pizzaId)=>{
@@ -66,6 +68,32 @@ const evtClickBt=(pizzaId)=>{
 
     storageCarrito()
 }
+
+agregarPizza.addEventListener("click",()=>{
+    const id=(arPizzas[arPizzas.length-1].id)+1
+    let imagen=prompt("Ingrese el link de su imagen(Ejemplo: pizzafugazzeta.jpg")
+    console.log(imagen)
+    let gusto=prompt("Ingrese el gusto de su pizza")
+    let tipoP=prompt('Ingrese "1" si quiere pizza chica o "2" si quiere pizza grande')
+    while ((tipoP != 1 ) && (tipoP != 2)){
+        tipoP=prompt('No es valido, Ingrese "1" si quiere pizza chica o "2" si quiere pizza grande ')
+    }
+    let tamañoP=""
+    if (tipoP==1){
+        tamañoP="Pizza chica"
+    }else{
+        tamañoP="Pizza grande"
+    }
+    let precio=parseInt(prompt("Ingrese el precio de su pizza"))
+
+    arPizzas.push({id:id,imagen:"img/"+imagen,gusto:gusto,tamaño:tamañoP,precio:precio,cantidad:1})
+    
+    storagePizzas()
+    cargarPizzas(arPizzas)
+    console.log(arPizzas)
+})
+
+recPizza()
 
 cargarPizzas(arPizzas)
 recCarrito()

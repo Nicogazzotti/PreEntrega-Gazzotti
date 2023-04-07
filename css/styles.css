@@ -76,10 +76,10 @@ header{
 }
 .imagen_carrito{
     border-top-left-radius: 50% 50%;
-    order-top-right-radius: 50% 50%;
+    border-top-right-radius: 50% 50%;
     border-bottom-right-radius: 50% 50%;
     border-bottom-left-radius: 50% 50%; 
-    width:60px ;
+    width:50px ;
 }
 /* Body  */
 .body{
@@ -137,6 +137,21 @@ header{
     padding: 20px;
     margin-top: 20px;
 }
+.agregar_pizza{
+    margin-left: 60px;
+    margin-bottom: 30px;
+    padding: 8px 40px;
+    font-size: 15px;
+    font-weight:600;
+    color:white;
+    background: rgb(0, 132, 255);
+    border:none;
+    cursor:pointer;
+    border-radius:5px;
+}
+.agregar_pizza:hover{
+    opacity:0.9;
+}
 
 /* CARTAS  */
 
@@ -151,6 +166,9 @@ header{
     width:100%;
     width:250px;
     height:150px;
+}
+.producto img:hover{
+    transform: scale(1.03);
 }
 .producto li{
     list-style: none;
