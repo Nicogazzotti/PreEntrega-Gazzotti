@@ -8,23 +8,17 @@ const storageCarrito=()=>{
 
 const recCarrito=()=>{
         const carritoStorage= JSON.parse(localStorage.getItem("carrito"))
-        if(carritoStorage!==null){
-            carrito.push(...carritoStorage) //spread operator
-        }
-        
-
+        carritoStorage!==null && carrito.push(...carritoStorage) //spread operator
 }
 
 const storagePizzas=()=>{
-    localStorage.setItem("pizzas",JSON.stringify(arPizzas))
+    localStorage.setItem("pizzas",JSON.stringify(pizzas))
 }
 
-const recPizza=()=>{
+const recPizzas=()=>{
     const pizzaStorage= JSON.parse(localStorage.getItem("pizzas"))
-    if(pizzaStorage!==null){
-        arPizzas.splice(0,arPizzas.length)
-        arPizzas.push(...pizzaStorage)
-    }
+    pizzaStorage!==null && pizzas.splice(0,pizzas.length)  && pizzas.push(...pizzaStorage)
+
 }
 
 

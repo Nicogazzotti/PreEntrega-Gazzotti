@@ -1,11 +1,9 @@
 const contTbody=document.querySelector("tbody")
 const precioTotal=document.getElementById("precio_total")
 const btnVaciar=document.getElementById("vaciar_carrito")
+const confCompra=document.getElementById("confirmar_compra")
+let total=0
 
-btnVaciar.addEventListener("click",()=>{
-    carrito.length=0
-    cargarCarrito()
-})
 const cargarCarrito=()=>{
     contTbody.innerHTML=""
     let sumaPrecios=0
@@ -26,13 +24,11 @@ const cargarCarrito=()=>{
         })
         
     }
-    if(carrito.length>0){
-        precioTotal.innerHTML= "El total del carrito es $"+sumaPrecios
-    }
-    else{
-        precioTotal.innerHTML=""
-    }
+    const carl= (carrito.length>0) ? true:false
+    carl ? precioTotal.innerHTML= "El total del carrito es $"+sumaPrecios : precioTotal.innerHTML="No existen elementos en el carrito"
+    total=sumaPrecios
     storageCarrito()
+    
 }
 
 const eliminarCarrito=(pizzaId)=>{
@@ -47,6 +43,35 @@ const eliminarCarrito=(pizzaId)=>{
     cargarCarrito()
 }
 
+btnVaciar.addEventListener("click",()=>{
+    if(carrito.length>0){
+    carrito.length=0
+    cargarCarrito()
+    
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Se ha vaciado el carrito correctamente',
+        showConfirmButton: false,
+        timer: 1000
+    })
+    }
+})
+
+confCompra.addEventListener("click",()=>{
+    if(carrito.length>0){
+        Swal.fire({
+            icon: 'success',
+            title: 'Muchas gracias por realizar tu compra!!',
+            text: 'Usted ha pagado el total de '+total+'$' ,    
+        })
+        localStorage.removeItem("carrito")
+        carrito.length=0
+        cargarCarrito()
+
+        
+    }
+})
 recCarrito()
 cargarCarrito()
 
