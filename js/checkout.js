@@ -25,7 +25,7 @@ const cargarCarrito=()=>{
         
     }
     const carl= (carrito.length>0) ? true:false
-    carl ? precioTotal.innerHTML= "El total del carrito es $"+sumaPrecios : precioTotal.innerHTML="No existen elementos en el carrito"
+    carl ? precioTotal.innerHTML= "El total del carrito es $"+sumaPrecios : precioTotal.innerHTML="No hay pizzas en el carrito"
     total=sumaPrecios
     storageCarrito()
     
@@ -61,15 +61,33 @@ btnVaciar.addEventListener("click",()=>{
 confCompra.addEventListener("click",()=>{
     if(carrito.length>0){
         Swal.fire({
-            icon: 'success',
-            title: 'Muchas gracias por realizar tu compra!!',
-            text: 'Usted ha pagado el total de '+total+'$' ,    
+            title: 'Estas seguro de que quieres realizar tu compra?',
+            text: "No podra cancelar su compra",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, realizar compra!'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Muchas gracias por realizar tu compra!!',
+                    text: 'Usted ha pagado el total de '+total+'$' ,    
+                })
+                localStorage.removeItem("carrito")
+                carrito.length=0
+                cargarCarrito()
+            }
+        }) 
+    }
+    else{
+        Swal.fire({
+            icon: 'error',
+            title: 'Su carrito esta vacio',
+            text: 'Agregue pizzas al carrito si quiere realizar su compra',
+            timer: 2500
         })
-        localStorage.removeItem("carrito")
-        carrito.length=0
-        cargarCarrito()
-
-        
     }
 })
 recCarrito()

@@ -1,11 +1,9 @@
-
 const tituloArriba=document.getElementById("titulo_contarriba");
 const tituloAbajo=document.getElementById("titulo_contabajo");
-
 const contArriba=document.getElementById("cont_pizzasGrandes");
 const contAbajo=document.getElementById("cont_pizzasChicas");
 const btnCarrito=document.querySelector("div.carrito");
-const agregarPizza=document.getElementById("agregar_pizza")
+const buscar=document.getElementById("buscar_pizza")
 const pizzas=[]
 const URL = 'js/pizzas.json'
 tituloArriba.innerHTML="Pizzas Grandes"
@@ -27,14 +25,6 @@ async function obtenerPizzas(){
             text: 'Hubo un error',    
         })
     }
-    // fetch(URL)
-    //     .then((response)=>{return response.json()
-    //     })
-    //     .then((data)=>{pizzas.length==0 && pizzas.push(...data)})
-    //     .then(()=>{cargarPizzas(pizzas)})
-    //     .then(()=>console.log(pizzas))
-        
-    //     .catch()
 }
 const cargarPizzas= (arrayP)=>{
     contArriba.innerHTML=""
@@ -93,70 +83,11 @@ const evtClickBt=(pizzaId)=>{
     storageCarrito()
 }
 
-
-agregarPizza.addEventListener("click",()=>{
-    const id=(pizzas[pizzas.length-1].id)+1
-    let imagen=prompt("Ingrese el link de su imagen(Ejemplo: pizzafugazzeta.jpg")
-    
-    while(imagen===null || imagen=== undefined || imagen===""){
-        imagen=prompt("No es valido. Ingrese el link de su imagen(Ejemplo: pizzafugazzeta.jpg")
-    }
-    
-    let gusto=prompt("Ingrese el gusto de su pizza")
-    while(gusto===null || gusto=== undefined || gusto===""){
-        gusto=prompt("No es valido. Ingrese el gusto de su pizza")
-    }
-    let tipoP=prompt('Ingrese "1" si quiere pizza chica o "2" si quiere pizza grande')
-    while ((tipoP != 1 ) && (tipoP != 2)){
-        tipoP=prompt('No es valido, Ingrese "1" si quiere pizza chica o "2" si quiere pizza grande ')
-    }
-    let tamañoP=""
-    if (tipoP==1){
-        tamañoP="Pizza chica"
-    }else{
-        tamañoP="Pizza grande"
-    }
-    let precio=parseInt(prompt("Ingrese el precio de su pizza"))
-    while(precio===0 || precio ===null || isNaN(precio) ){
-        precio=parseInt(prompt("El precio ingresado no es valido. VUelva a ingresar el precio de su pizza"))
-    }
-
-    pizzas.push({id:id,imagen:"img/"+imagen,gusto:gusto,tamaño:tamañoP,precio:precio,cantidad:1})
-    Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Se subio correctamente la pizza',
-        showConfirmButton: false,
-        timer: 1500
-    })
-    cargarPizzas(pizzas)
-    storagePizzas()
-
-    // .push({id:id,imagen:"img/"+imagen,gusto:gusto,tamaño:tamañoP,precio:precio,cantidad:1})
-    // const newPost={
-    //     id:id,
-    //     imagen:"img/"+imagen,
-    //     gusto:gusto,
-    //     tamaño:tamañoP,
-    //     precio:precio,
-    //     cantidad:1
-    // }
-    // fetch(URL),{
-    //     method: 'POST',
-    //     body:JSON.stringify(newPost),
-    //     headers:{
-    //         "Content-type":"application/json"
-    //     }   
-    // }
-    
-    
-    // fetch(URL)
-    //     method:"POST",
-    //     body: JSON.stringify
-    // COMO PUEDO HACER UN METODO POST AL ARCHIVO JSON CON LA PIZZA AGREGADA AL MENU. Y sino hacer un storage solo de lo agregado y sino sacar lo de agregar una pizza.
-    
+buscar.addEventListener("search",()=>{
+    const filter=pizzas.filter(p=>p.gusto.toLowerCase().includes(buscar.value.toLowerCase()))
+    filter.length>0 && cargarPizzas(filter)
 })
 
+
 obtenerPizzas()
-recPizzas()
 recCarrito()
